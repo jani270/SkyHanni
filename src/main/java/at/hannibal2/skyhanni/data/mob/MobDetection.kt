@@ -7,7 +7,6 @@ import at.hannibal2.skyhanni.data.mob.MobFilter.isRealPlayer
 import at.hannibal2.skyhanni.data.mob.MobFilter.isSkyBlockMob
 import at.hannibal2.skyhanni.events.DebugDataCollectEvent
 import at.hannibal2.skyhanni.events.entity.EntityHealthUpdateEvent
-import at.hannibal2.skyhanni.events.minecraft.ClientDisconnectEvent
 import at.hannibal2.skyhanni.events.minecraft.packet.PacketReceivedEvent
 import at.hannibal2.skyhanni.skyhannimodule.SkyHanniModule
 import at.hannibal2.skyhanni.test.DevApi
@@ -258,9 +257,10 @@ object MobDetection {
     @HandleEvent
     fun onEntityHealthUpdate(event: EntityHealthUpdateEvent) {
         when {
-            event.entity is Bat && event.health == 6 -> {
+            // Very high false positive rate
+            /*event.entity is Bat && event.health == 6 -> {
                 entityFromPacket.add(EntityPacketType.SPIRIT_BAT to event.entity.id)
-            }
+            }*/
 
             event.entity is Villager && event.health != 20 -> {
                 entityFromPacket.add(EntityPacketType.VILLAGER to event.entity.id)
@@ -383,7 +383,7 @@ object MobDetection {
     }
 
     @HandleEvent
-    fun onDisconnect(event: ClientDisconnectEvent) {
+    fun onDisconnect() {
         shouldClear.set(true)
     }
 

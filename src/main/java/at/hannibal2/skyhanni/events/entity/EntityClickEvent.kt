@@ -1,17 +1,19 @@
 package at.hannibal2.skyhanni.events.entity
 
-import at.hannibal2.skyhanni.data.ClickType
+import at.hannibal2.skyhanni.data.InteractClickType
 import at.hannibal2.skyhanni.events.WorldClickEvent
 import at.hannibal2.skyhanni.events.entity.abstract.SkyHanniEntityEvent
 import at.hannibal2.skyhanni.skyhannimodule.PrimaryFunction
-import net.minecraft.network.protocol.game.ServerboundInteractPacket
+import at.hannibal2.skyhanni.utils.SafeItemStack
 import net.minecraft.world.entity.Entity
-import net.minecraft.world.item.ItemStack
 
 @PrimaryFunction("onEntityClick")
-class EntityClickEvent(
-    clickType: ClickType,
-    val action: ServerboundInteractPacket.ActionType,
-    override val entity: Entity,
-    itemInHand: ItemStack?,
-) : WorldClickEvent(itemInHand, clickType), SkyHanniEntityEvent<Entity>
+class EntityClickEvent(clickType: InteractClickType, val action: ActionType, val entity: Entity, itemInHand: SafeItemStack?) :
+    WorldClickEvent(itemInHand, clickType) {
+
+    enum class ActionType {
+        INTERACT,
+        ATTACK,
+        INTERACT_AT,
+    }
+}

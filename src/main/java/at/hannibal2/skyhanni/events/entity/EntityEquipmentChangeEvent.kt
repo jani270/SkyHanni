@@ -3,14 +3,14 @@ package at.hannibal2.skyhanni.events.entity
 import at.hannibal2.skyhanni.api.event.GenericSkyHanniEvent
 import at.hannibal2.skyhanni.events.entity.abstract.SkyHanniEntityEvent
 import at.hannibal2.skyhanni.skyhannimodule.PrimaryFunction
+import at.hannibal2.skyhanni.utils.SafeItemStack
 import net.minecraft.world.entity.Entity
-import net.minecraft.world.item.ItemStack
 
 @PrimaryFunction("onEntityEquipmentChange")
 data class EntityEquipmentChangeEvent<T : Entity>(
     override val entity: T,
     val equipmentSlot: Int,
-    val newItemStack: ItemStack?,
+    val newItemStack: SafeItemStack?,
 ) : GenericSkyHanniEvent<T>(entity.javaClass), SkyHanniEntityEvent<T> {
 
     val isHead get() = equipmentSlot == EQUIPMENT_SLOT_HEAD
