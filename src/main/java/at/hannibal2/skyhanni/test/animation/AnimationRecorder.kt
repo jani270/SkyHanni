@@ -263,7 +263,7 @@ object AnimationRecorder {
      * new raw frame added during learning).
      */
     private fun AnimationFrameTracker.recordAndDidChange(
-        serverTick: Long,
+        serverTick: Int,
         clientTick: Int,
         frame: AnimationFrameTracker.FrameRecord?,
     ): Boolean {

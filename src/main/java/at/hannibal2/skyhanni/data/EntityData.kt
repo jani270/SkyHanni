@@ -67,8 +67,8 @@ object EntityData {
     }
 
     @JvmStatic
-    fun getHealthDisplay(entity: Entity, text: Component) = healthDisplayCache.getOrPut(text) {
-        EntityHealthDisplayEvent(entity, text).apply {
+    fun getHealthDisplay(text: Component) = healthDisplayCache.getOrPut(text) {
+        EntityHealthDisplayEvent(text).apply {
             post()
         }.text
     }

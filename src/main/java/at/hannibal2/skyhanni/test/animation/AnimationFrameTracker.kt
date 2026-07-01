@@ -90,7 +90,7 @@ class AnimationFrameTracker : Resettable {
 
     private var phase = Phase.LEARNING
     private var currentFrame: FrameRecord? = null
-    private var frameStartServerTick: Long = 0L
+    private var frameStartServerTick: Int = 0
     private var frameStartClientTick: Int = 0
     private var seeking = false
 
@@ -194,7 +194,7 @@ class AnimationFrameTracker : Resettable {
      * @param frame The current animation frame, or null to break the sequence.
      * @return true if a loop was just completed.
      */
-    fun record(serverTick: Long, clientTick: Int, frame: FrameRecord?): Boolean {
+    fun record(serverTick: Int, clientTick: Int, frame: FrameRecord?): Boolean {
         if (frame == null) {
             currentFrame = null
             if (phase == Phase.VERIFYING) seeking = true

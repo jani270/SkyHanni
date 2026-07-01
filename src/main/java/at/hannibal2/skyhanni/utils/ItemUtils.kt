@@ -1076,8 +1076,7 @@ object ItemUtils {
             }
         }
     }
-
-    fun ItemStack.getSkullSignature(): String? {
+    fun SafeItemStack.getSkullSignature(): String? {
         if (item != Items.PLAYER_HEAD) return null
         return this.get(DataComponents.PROFILE)?.partialProfile()?.properties?.get("textures")?.firstOrNull()?.signature
     }
