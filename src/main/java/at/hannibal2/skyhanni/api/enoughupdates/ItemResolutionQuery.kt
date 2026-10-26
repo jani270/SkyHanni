@@ -311,7 +311,7 @@ class ItemResolutionQuery {
     }
 
     private fun resolveFactionRabbitName(): NeuInternalName {
-        val name = getExtraAttributes().getStringOrDefault("faction_rabbit_id")
+        val id = getExtraAttributes().getStringOrDefault("faction_rabbit_id")
         val rawInternalName = "FACTION_RABBIT_" + name.uppercase()
         return rawInternalName.toInternalName()
     }
